@@ -38,3 +38,108 @@ class Game:
             self.player1 = AI()
             self.player2 = AI()
 
+    def rock_outcome(self):
+        if self.player2.choice == 'Scissors':
+            print(f'{self.player1.name}\'s Rock crushes {self.player2.name}')
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Paper':
+
+            self.player2.points += 1   
+            return
+        if self.player2.choice == 'Lizard':
+
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Spock':
+
+            self.player2.points += 1
+            return
+
+    def paper_outcome(self):
+        if self.player2.choice == 'Scissors':
+            
+            self.player2.points += 1
+            return
+        if self.player2.choice == 'Rock':
+
+            self.player1.points += 1   
+            return
+        if self.player2.choice == 'Lizard':
+
+            self.player2.points += 1
+            return
+        if self.player2.choice == 'Spock':
+
+            self.player1.points += 1
+            return    
+
+    def scissors_outcome(self):
+        if self.player2.choice == 'Paper':
+            
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Rock':
+
+            self.player2.points += 1   
+            return
+        if self.player2.choice == 'Lizard':
+
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Spock':
+
+            self.player2.points += 1
+            return                       
+    def lizard_outcome(self):
+        if self.player2.choice == 'Scissors':
+            
+            self.player2.points += 1
+            return
+        if self.player2.choice == 'Rock':
+
+            self.player2.points += 1   
+            return
+        if self.player2.choice == 'Paper':
+
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Spock':
+
+            self.player1.points += 1
+            return
+    def spock_outcome(self):
+        if self.player2.choice == 'Scissors':
+            
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Rock':
+
+            self.player1.points += 1   
+            return
+        if self.player2.choice == 'Lizard':
+
+            self.player1.points += 1
+            return
+        if self.player2.choice == 'Paper':
+
+            self.player2.points += 1
+            return              
+
+    
+    def outcome(self):
+        self.player1.select_choice()
+        self.player2.select_choice()
+        if self.player1.choice == self.player2.choice:
+            print(f'Both players picked {self.player1.choice} and neither player scored!')
+            return
+        if self.player1.choice == 'Rock':
+            self.rock_outcome()
+        if self.player1.choice == 'Paper':
+            self.paper_outcome()
+        if self.player1.choice == 'Scissors':
+            self.scissors_outcome()
+        if self.player1.choice == 'Lizard':
+            self.lizard_outcome()
+        if self.player1.choice == 'Spock':
+            self.spock_outcome()
