@@ -4,6 +4,6 @@ from game import Game
 
 
 run = Game()
-run.determine_players()
+run.run_game()
 
 

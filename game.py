@@ -55,7 +55,6 @@ class Game:
 
             self.player2.points += 1
             return
-
     def paper_outcome(self):
         if self.player2.choice == 'Scissors':
             
@@ -73,7 +72,6 @@ class Game:
 
             self.player1.points += 1
             return    
-
     def scissors_outcome(self):
         if self.player2.choice == 'Paper':
             
@@ -143,3 +141,20 @@ class Game:
             self.lizard_outcome()
         if self.player1.choice == 'Spock':
             self.spock_outcome()
+
+    def gameplay(self):
+        while self.player1.points < 2 and self.player2.points < 2:
+            self.outcome()
+
+    def display_winner(self):
+        if self.player1.points == 2:
+            print(f'{self.player1.name} is the Winner!')
+        else:
+            print(f'{self.player2.name} is the Winner!')
+
+    def run_game(self):
+        self.intro()
+        self.rules()
+        self.determine_players()
+        self.gameplay()
+        self.display_winner()
