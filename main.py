@@ -1,10 +1,9 @@
-from human import Human
+from game import Game
+# run = Human()
+# run.select_choice()
 
 
+run = Game()
+run.determine_players()
 
 
-
-
-
-run = Human()
-run.select_choice()

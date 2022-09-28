@@ -11,5 +11,5 @@ class Human(Player):
         self.choice = input(f"What would you like to choose? \n{self.options}\n")
 
 
-run = Human()
-run.select_choice()
+# run = Human()
+# run.select_choice()
