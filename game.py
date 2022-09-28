@@ -1,25 +1,31 @@
 
 from AI import AI
 from human import Human
-
+import time
 
 class Game:
     def __init__(self):
         self.player1 = ""
         self.player2 = ""
         self.humans = False
+        self.human = False
         self.points_win = 0
+        
         super().__init__()
     
     def intro(self):
         print()
-        print("Welcome to Rock, Paper, Scissors, Lizard, Spock")
+        print("                  Welcome to Rock, Paper, Scissors, Lizard, Spock")
         print()
+        time.sleep(2.5)
     
     def rules(self):
         print("Each player selects an option from the given list. Each option will beat another option, lose against another option, or tie against the same option")
+        print()
         print("Here are the different outcomes")
-        print("Rock crushes Scissors \nScissors cuts Paper \nPaper covers Rock \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors \nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock")
+        time.sleep(2)
+        print()
+        print("Rock crushes Scissors\nScissors cuts Paper \nPaper covers Rock \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors \nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock")
         print()
         
     def determine_players(self):
@@ -36,9 +42,11 @@ class Game:
             self.player1 = Human(1)
             self.player2 = Human(2)
             self.humans = True
+            self.human = True
         if players == 1:
             self.player1 = Human(1)
             self.player2 = AI()
+            self.human = True
         if players == 0 :
             self.player1 = AI()
             self.player2 = AI()
@@ -53,6 +61,7 @@ class Game:
             else:
                 self.points_win = input('Please enter a valid number.\n')
                 print()
+        print()
 
 
     def player1_wins(self):
@@ -150,7 +159,6 @@ class Game:
         if self.player1.choice == self.player2.choice:
             print(f'Both players picked {self.player1.choice} and neither player scored!')
             print()
-            return
         if self.player1.choice == 'Rock':
             self.rock_outcome()
         elif self.player1.choice == 'Paper':
@@ -161,7 +169,12 @@ class Game:
             self.lizard_outcome()
         elif self.player1.choice == 'Spock':
             self.spock_outcome()
+        if self.human:
+            time.sleep(1.5)
         self.tally()
+        if self.human:
+            time.sleep(1.5)
+
 
     def gameplay(self):
         while self.player1.points < self.points_win and self.player2.points < self.points_win:
