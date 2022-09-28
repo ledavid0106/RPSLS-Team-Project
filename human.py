@@ -8,8 +8,6 @@ class Human(Player):
         super().__init__()
     
     def select_choice(self):
-        self.choice = input(f"What would you like to choose? \n{self.options}\n")
+        self.choice = input(f"{self.name} What would you like to choose? \n{self.options}\n")
 
 
-# run = Human()
-# run.select_choice()
