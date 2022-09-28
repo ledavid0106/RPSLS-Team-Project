@@ -1,4 +1,8 @@
 
+from AI import AI
+from human import Human
+
+
 class Game:
     def __init__(self):
         self.player1 = ""
@@ -15,5 +19,14 @@ class Game:
         print("Here are the different outcomes")
         print("Rock crushes Scissors \nScissors cuts Paper \nPaper covers Rock \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors \nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock")
 
-
-
+    def determine_players(self):
+        players = int(input("How many players are playing?\n"))
+        if players == 2 :
+            self.player1 = Human()
+            self.player2 = Human()
+        if players == 1:
+            self.player1 = Human()
+            self.player2 = AI()
+        if players == 0 :
+            self.player1 = AI()
+            self.player2 = AI()
