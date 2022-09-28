@@ -1,3 +1,4 @@
-print('hello david2')
+from human import Human
+run = Human()
+run.select_choice()
 
-# print("hello ben")
