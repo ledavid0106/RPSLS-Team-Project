@@ -20,7 +20,14 @@ class Game:
         print("Rock crushes Scissors \nScissors cuts Paper \nPaper covers Rock \nRock crushes Lizard \nLizard poisons Spock \nSpock smashes Scissors \nScissors decapitates Lizard \nLizard eats Paper \nPaper disproves Spock \nSpock vaporizes Rock")
 
     def determine_players(self):
-        players = int(input("How many players are playing?\n"))
+        players = (input("How many players are playing?\n"))
+        while True:
+            if players.isnumeric() and int(players) in range(0,3):
+                players = int(players)
+                break
+            else:
+                players = input('Please reselect the number of players: 0, 1 or 2\n')
+        
         if players == 2 :
             self.player1 = Human()
             self.player2 = Human()
@@ -30,3 +37,4 @@ class Game:
         if players == 0 :
             self.player1 = AI()
             self.player2 = AI()
+
