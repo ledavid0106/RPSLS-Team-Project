@@ -1,7 +1,5 @@
 # RPSLS-Team-Project
 
-Ben's Test Commit
-
 Step 1 Display the rule of the game
     indicate what wins over what
     how points are obtained
