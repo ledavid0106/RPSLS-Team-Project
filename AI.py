@@ -7,5 +7,8 @@ class AI(Player):
         # self.names = ["John", "Joe", "Jack", "Joseph", "Jordan", "James", "Dan"]
         self.name = random.choice(["John", "Joe", "Jack", "Joseph", "Jordan", "James", "Dan"])
         super().__init__()
-    
-    
+
+
+    def select_choice(self):
+        self.choice = random.choice(self.options)
+        
