@@ -17,13 +17,19 @@ Step 3 Classes
 
         AI classes that include:
             random generator
+    Game Class
+        player1, player2, methods to run game
+        intro
+        rules
 
-Step 4 
-    Compare inputs of each "player" to determine winner
-    Add winner a point
+Step 4 Game Logistics
+        While loop until player score 2 points
+            get input from players (human selects an option whereas AI is randomly generated)
+            determine outcome from selected options
+                chain of if statements
+            award winning players with points 
 
 Step 5
-    Repeat step 4 until a player has reached 2 points
-
-Step 6
     Display Winner
+
+    I'd like you two to add more detail to your algorithm. I need to know more explicitly how your program will handle the actual gameplay.
