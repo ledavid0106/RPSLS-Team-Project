@@ -8,6 +8,7 @@ class Game:
         self.player1 = ""
         self.player2 = ""
         self.humans = False
+        self.points_win = 0
         super().__init__()
     
     def intro(self):
@@ -32,15 +33,27 @@ class Game:
                 players = input('Please reselect the number of players: 0, 1 or 2\n')
                 print()
         if players == 2 :
-            self.player1 = Human()
-            self.player2 = Human()
+            self.player1 = Human(1)
+            self.player2 = Human(2)
             self.humans = True
         if players == 1:
-            self.player1 = Human()
+            self.player1 = Human(1)
             self.player2 = AI()
         if players == 0 :
             self.player1 = AI()
             self.player2 = AI()
+
+    def point_to_win(self):
+        self.points_win = (input("How many points do you want required to win?\n"))
+
+        while True:
+            if self.points_win.isnumeric():
+                self.points_win = int(self.points_win)
+                break
+            else:
+                self.points_win = input('Please enter a valid number.\n')
+                print()
+
 
     def player1_wins(self):
         print(f'{self.player1.name}\'s {self.player1.choice} beats {self.player2.name}\'s {self.player2.choice}!')
@@ -123,11 +136,14 @@ class Game:
             self.player2_wins()
             return              
 
+    def tally(self):
+        print(f"{self.player1.name} has {self.player1.points} points || {self.player2.name} has {self.player2.points} points")
+        print()
     
     def outcome(self):
         self.player1.select_choice()
         if self.humans == True:
-            for count in range(8):
+            for count in range(50):
                 print()
         self.player2.select_choice()
         print()
@@ -137,21 +153,22 @@ class Game:
             return
         if self.player1.choice == 'Rock':
             self.rock_outcome()
-        if self.player1.choice == 'Paper':
+        elif self.player1.choice == 'Paper':
             self.paper_outcome()
-        if self.player1.choice == 'Scissors':
+        elif self.player1.choice == 'Scissors':
             self.scissors_outcome()
-        if self.player1.choice == 'Lizard':
+        elif self.player1.choice == 'Lizard':
             self.lizard_outcome()
-        if self.player1.choice == 'Spock':
+        elif self.player1.choice == 'Spock':
             self.spock_outcome()
+        self.tally()
 
     def gameplay(self):
-        while self.player1.points < 2 and self.player2.points < 2:
+        while self.player1.points < self.points_win and self.player2.points < self.points_win:
             self.outcome()
 
     def display_winner(self):
-        if self.player1.points == 2:
+        if self.player1.points == self.points_win:
             print(f'{self.player1.name} is the Winner!')
         else:
             print(f'{self.player2.name} is the Winner!')
@@ -160,5 +177,6 @@ class Game:
         self.intro()
         self.rules()
         self.determine_players()
+        self.point_to_win()
         self.gameplay()
         self.display_winner()
