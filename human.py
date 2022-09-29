@@ -9,9 +9,13 @@ class Human(Player):
         super().__init__()
     
     def select_choice(self):
-        self.choice = input(f"{self.name}, what would you like to choose? \n{self.options}\n")
-        while self.choice not in self.options:
-            self.choice = input(f"Please re-input your selection. \n{self.options}\n")
+        pick = input(f"{self.name}, what would you like to choose? \n{self.options_names}\n")
+        while pick not in self.options_names:
+            pick = input(f"Please re-input your selection. \n{self.options_names}\n")
+
+        for option in self.options:
+            if pick == option.name:
+                self.choice = option
 
     def name_space(self):
         result = input(f"Player {self.player_number}, what is your name? \n")

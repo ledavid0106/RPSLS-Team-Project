@@ -15,37 +15,37 @@ class Game:
     
     def intro(self):
         print()
-        print("                  Welcome to Rock, Paper, Scissors, Lizard, Spock")
+        print("           Welcome to Rock, Paper, Scissors, Lizard, Spock")
         print()
-        time.sleep(2.5)
+        # time.sleep(2)
     
     def rules(self):
-        print("                  Each player selects an option from the given list.") 
-        print("                  Each option will beat another option, lose against another option, or tie against the same option")
+        print("Each player selects an option from the given list.") 
+        print("Each option will beat another option, lose against another option, or tie against the same option")
         print()
-        print("                  Here are the different outcomes")
-        time.sleep(1)
+        print("               Here are the different outcomes")
+        time.sleep(.5)
         print()
         print("                  Rock crushes Scissors")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Scissors cuts Paper")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Paper covers Rock")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Rock crushes Lizard")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Lizard poisons Spock")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Spock smashes Scissors")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Scissors decapitates Lizard")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Lizard eats Paper")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Paper disproves Spock")
-        time.sleep(1)
+        time.sleep(.5)
         print("                  Spock vaporizes Rock")
-        time.sleep(1)
+        time.sleep(.5)
         print()
         
     def determine_players(self):
@@ -84,88 +84,18 @@ class Game:
         print()
 
 
-    def player1_wins(self):
-        print(f'{self.player1.name}\'s {self.player1.choice} beats {self.player2.name}\'s {self.player2.choice}!')
+    def player1_wins(self,phrase):
+        print(f'{self.player1.name}\'s {self.player1.choice.name} {phrase} {self.player2.name}\'s {self.player2.choice.name}!')
         self.player1.points += 1
         print()
 
-    def player2_wins(self):
-        print(f'{self.player2.name}\'s {self.player2.choice} beats {self.player1.name}\'s {self.player1.choice}!')
+    def player2_wins(self,phrase):
+        print(f'{self.player2.name}\'s {self.player2.choice.name} {phrase} {self.player1.name}\'s {self.player1.choice.name}!')
         self.player2.points += 1
         print()           
 
 
-    def rock_outcome(self):
-        if self.player2.choice == 'Scissors':
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Paper':
-            self.player2_wins()
-            return
-        if self.player2.choice == 'Lizard':
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Spock':
-            self.player2_wins()
-            return
-
-    def paper_outcome(self):
-        if self.player2.choice == 'Scissors':
-            self.player2_wins()
-            return
-        if self.player2.choice == 'Rock':
-            self.player1_wins()   
-            return
-        if self.player2.choice == 'Lizard':
-            self.player2_wins()
-            return
-        if self.player2.choice == 'Spock':
-            self.player1_wins()
-            return    
-
-    def scissors_outcome(self):
-        if self.player2.choice == 'Paper':           
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Rock':
-            self.player2_wins()   
-            return
-        if self.player2.choice == 'Lizard':
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Spock':
-            self.player2_wins()
-            return         
-
-    def lizard_outcome(self):
-        if self.player2.choice == 'Scissors':           
-            self.player2_wins()
-            return
-        if self.player2.choice == 'Rock':
-            self.player2_wins()  
-            return
-        if self.player2.choice == 'Paper':
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Spock':
-            self.player1_wins()
-            return
-
-    def spock_outcome(self):
-        if self.player2.choice == 'Scissors':           
-            self.player1_wins()
-            return
-        if self.player2.choice == 'Rock':
-            self.player1_wins()   
-            return
-        if self.player2.choice == 'Lizard':
-            self.player2_wins()
-            return
-        if self.player2.choice == 'Paper':
-            self.player2_wins()
-            return              
-
-    def tally(self):
+    def display_tally(self):
         print(f"{self.player1.name} has {self.player1.points} points || {self.player2.name} has {self.player2.points} points")
         print()
     
@@ -176,22 +106,24 @@ class Game:
                 print()
         self.player2.select_choice()
         print()
-        if self.player1.choice == self.player2.choice:
-            print(f'Both players picked {self.player1.choice} and neither player scored!')
+        if self.player1.choice.name == self.player2.choice.name:
+            print(f'Both players picked {self.player1.choice.name} and neither player scored!')
             print()
-        if self.player1.choice == 'Rock':
-            self.rock_outcome()
-        elif self.player1.choice == 'Paper':
-            self.paper_outcome()
-        elif self.player1.choice == 'Scissors':
-            self.scissors_outcome()
-        elif self.player1.choice == 'Lizard':
-            self.lizard_outcome()
-        elif self.player1.choice == 'Spock':
-            self.spock_outcome()
+        elif self.player2.choice.name in self.player1.choice.beats:
+            if self.player2.choice.name == self.player1.choice.beats[0]:
+                self.player1_wins(self.player1.choice.phrase[0])
+            else:
+                self.player1_wins(self.player1.choice.phrase[1])        
+        else:
+            if self.player1.choice.name == self.player2.choice.beats[0]:
+                self.player1_wins(self.player2.choice.phrase[0])
+            else:
+                self.player1_wins(self.player2.choice.phrase[1])     
+            
+
         if self.human:
             time.sleep(1.5)
-        self.tally()
+        self.display_tally()
         if self.human:
             time.sleep(1.5)
 
