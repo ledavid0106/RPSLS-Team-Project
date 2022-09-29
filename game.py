@@ -15,16 +15,17 @@ class Game:
     
     def intro(self):
         print()
-        print("                   Welcome to Rock, Paper, Scissors, Lizard, Spock")
+        print("                  Welcome to Rock, Paper, Scissors, Lizard, Spock")
         print()
         time.sleep(1.65)
     
     def rules(self):
-        print("                   Each player selects an option from the given list.") 
+        print("                   Each player selects an option from the given list.")
+        print()
         print("Each option will beat another option, lose against another option, or tie against the same option")
         print()
-        print("                           Here are the different outcomes")
-        time.sleep(.5)
+        print("                         Here are the different outcomes")
+        time.sleep(2)
         print()
         print("                              Rock crushes Scissors")
         time.sleep(.5)
@@ -97,37 +98,33 @@ class Game:
         print(f"{self.player1.name} has {self.player1.points} points || {self.player2.name} has {self.player2.points} points")
         print()
     
-    def outcome(self):
-        self.player1.select_choice()
-        if self.humans == True:
-            for count in range(50):
-                print()
-        self.player2.select_choice()
-        print()
-        if self.player1.choice.name == self.player2.choice.name:
-            print(f'Both players picked {self.player1.choice.name} and neither player scored!')
-            print()
-        elif self.player2.choice.name in self.player1.choice.beats:
-            if self.player2.choice.name == self.player1.choice.beats[0]:
-                self.player1_wins(self.player1.choice.phrase[0])
-            else:
-                self.player1_wins(self.player1.choice.phrase[1])        
-        else:
-            if self.player1.choice.name == self.player2.choice.beats[0]:
-                self.player2_wins(self.player2.choice.phrase[0])
-            else:
-                self.player2_wins(self.player2.choice.phrase[1])     
-            
-
-        if self.human:
-            time.sleep(1.5)
-        self.display_tally()
-        if self.human:
-            time.sleep(1.5)
-
     def gameplay(self):
         while self.player1.points < self.points_win and self.player2.points < self.points_win:
-            self.outcome()
+            self.player1.select_choice()
+            if self.humans == True:
+                for count in range(50):
+                    print()
+            self.player2.select_choice()
+            print()
+            if self.player1.choice.name == self.player2.choice.name:
+                print(f'Both players picked {self.player1.choice.name} and neither player scored!')
+                print()
+            elif self.player2.choice.name in self.player1.choice.beats:
+                if self.player2.choice.name == self.player1.choice.beats[0]:
+                    self.player1_wins(self.player1.choice.phrase[0])
+                else:
+                    self.player1_wins(self.player1.choice.phrase[1])        
+            else:
+                if self.player1.choice.name == self.player2.choice.beats[0]:
+                    self.player2_wins(self.player2.choice.phrase[0])
+                else:
+                    self.player2_wins(self.player2.choice.phrase[1])     
+                
+            if self.human:
+                time.sleep(1.5)
+            self.display_tally()
+            if self.human:
+                time.sleep(1.5)
 
     def display_winner(self):
         if self.player1.points == self.points_win:

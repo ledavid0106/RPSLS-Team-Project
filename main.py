@@ -1,6 +1,6 @@
 from game import Game
-run = Game()
-run.run_game()
+rpsls = Game()
+rpsls.run_game()
 
 
 
