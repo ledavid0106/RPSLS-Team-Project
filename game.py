@@ -139,7 +139,7 @@ class Game:
             self.player1_wins()   
             return
         if self.player2.choice == 'Lizard':
-            self.player1_wins()
+            self.player2_wins()
             return
         if self.player2.choice == 'Paper':
             self.player2_wins()
