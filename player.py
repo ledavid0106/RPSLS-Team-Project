@@ -5,7 +5,7 @@ class Player:
         self.options = [Gesture('Rock',['Scissors','Lizard'],['crushes','crushes']), 
         Gesture('Paper',['Rock','Spock'],['covers','disproves']), 
         Gesture("Scissors",['Paper','Lizard'],['cuts','dicapitates']), 
-        Gesture('Lizard',['Paper','Spock'],['posions','eats']), 
+        Gesture('Lizard',['Paper','Spock'],['eats','posions']), 
         Gesture("Spock",['Scissors','Rock'],['smashes','vaporizes'])]
         self.choice = ""
         self.points = 0
