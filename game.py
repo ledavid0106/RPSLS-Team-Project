@@ -10,45 +10,30 @@ class Game:
         self.humans = False
         self.human = False
         self.points_win = 0
-        
+        self.rules_list = ['Rock crushes Scissors','Scissors cuts Paper','Paper covers Rock',
+        'Rock crushes Lizard','Lizard poisons Spock','Spock smashes Scissors', 'Scissors decapitates Lizard',
+        'Lizard eats Paper', 'Paper disproves Spock','Spock vaporizes Rock']
         super().__init__()
     
     def intro(self):
-        print()
-        print("                  Welcome to Rock, Paper, Scissors, Lizard, Spock")
-        print()
+        print('''                 
+                                        Welcome to Rock, Paper, Scissors, Lizard, Spock 
+        ''')
         time.sleep(1.65)
     
     def rules(self):
-        print("                   Each player selects an option from the given list.")
-        print()
-        print("Each option will beat another option, lose against another option, or tie against the same option")
-        print()
-        print("                         Here are the different outcomes")
-        time.sleep(2)
-        print()
-        print("                              Rock crushes Scissors")
-        time.sleep(.5)
-        print("                               Scissors cuts Paper")
-        time.sleep(.5)
-        print("                               Paper covers Rock")
-        time.sleep(.5)
-        print("                              Rock crushes Lizard")
-        time.sleep(.5)
-        print("                              Lizard poisons Spock")
-        time.sleep(.5)
-        print("                             Spock smashes Scissors")
-        time.sleep(.5)
-        print("                           Scissors decapitates Lizard")
-        time.sleep(.5)
-        print("                               Lizard eats Paper")
-        time.sleep(.5)
-        print("                             Paper disproves Spock")
-        time.sleep(.5)
-        print("                              Spock vaporizes Rock")
-        time.sleep(.5)
-        print()
+        print('''                                      Each player selects an option from the given list.
+          
+                Each option will beat another option, lose against another option, or tie against the same option
         
+                                             Here are the different outcomes:
+                                             ''')
+        for rule in self.rules_list:
+            print(f'                                                   {rule}')
+            time.sleep(.25)
+        print()
+
+            
     def determine_players(self):
         players = (input("How many players are playing?\n"))
         print()
@@ -84,16 +69,6 @@ class Game:
                 print()
         print()
 
-    def player1_wins(self,phrase):
-        print(f'{self.player1.name}\'s {self.player1.choice.name} {phrase} {self.player2.name}\'s {self.player2.choice.name}!')
-        self.player1.points += 1
-        print()
-
-    def player2_wins(self,phrase):
-        print(f'{self.player2.name}\'s {self.player2.choice.name} {phrase} {self.player1.name}\'s {self.player1.choice.name}!')
-        self.player2.points += 1
-        print()           
-
     def display_tally(self):
         print(f"{self.player1.name} has {self.player1.points} points || {self.player2.name} has {self.player2.points} points")
         print()
@@ -106,20 +81,8 @@ class Game:
                     print()
             self.player2.select_choice()
             print()
-            if self.player1.choice.name == self.player2.choice.name:
-                print(f'Both players picked {self.player1.choice.name} and neither player scored!')
-                print()
-            elif self.player2.choice.name in self.player1.choice.beats:
-                if self.player2.choice.name == self.player1.choice.beats[0]:
-                    self.player1_wins(self.player1.choice.phrase[0])
-                else:
-                    self.player1_wins(self.player1.choice.phrase[1])        
-            else:
-                if self.player1.choice.name == self.player2.choice.beats[0]:
-                    self.player2_wins(self.player2.choice.phrase[0])
-                else:
-                    self.player2_wins(self.player2.choice.phrase[1])     
-                
+            self.player1.score_point(self.player2)
+            print()
             if self.human:
                 time.sleep(1.5)
             self.display_tally()

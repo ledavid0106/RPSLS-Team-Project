@@ -5,7 +5,6 @@ from player import Player
 class Human(Player):
     def __init__(self, number):
         self.player_number = number
-        self.name = self.name_player()
         super().__init__()
     
     def select_choice(self):
